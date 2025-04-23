@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}QR Code - {{ menu.hotel_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="qr-card">
+        <h2>{{ menu.hotel_name }} Menu QR Code</h2>
+        
+        <div class="qr-display">
+            <img src="{{ url_for('static', filename='qrcodes/' + menu.qr_filename) }}" alt="QR Code" class="qr-image">
+        </div>
+        
+        <div class="qr-info">
+            <p>Scan this QR code to download the menu.</p>
+            <p>You can print this QR code and place it at your hotel reception, tables, or include it in promotional materials.</p>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('download_menu', menu_id=menu.id) }}" class="btn-secondary">Test Download</a>
+            <a href="{{ url_for('static', filename='qrcodes/' + menu.qr_filename) }}" download="{{ menu.hotel_name }}_QR.png" class="btn-primary">Download QR Image</a>
+            <a href="{{ url_for('index') }}" class="btn-outline">Upload Another Menu</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

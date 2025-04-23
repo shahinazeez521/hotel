@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Upload Menu - Hotel Menu QR System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="upload-card">
+        <h2>Upload Your Hotel Menu</h2>
+        <p>Upload your menu PDF file to generate a QR code that customers can scan to download it.</p>
+        
+        <form action="{{ url_for('upload_menu') }}" method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="form-group">
+                <label for="hotel_name">Hotel Name:</label>
+                <input type="text" id="hotel_name" name="hotel_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="menu_pdf">Menu PDF:</label>
+                <input type="file" id="menu_pdf" name="menu_pdf" accept=".pdf" required>
+                <small>Maximum file size: 16MB</small>
+            </div>
+            
+            <button type="submit" class="btn-primary">Generate QR Code</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
